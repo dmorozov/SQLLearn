@@ -13,3 +13,7 @@ Use the five default triage labels. Before triaging tickets, read `docs/agents/t
 ### Domain docs
 
 Use a single-context layout: root `CONTEXT.md` and `docs/adr/`. Before exploring the codebase, read `docs/agents/domain.md`.
+
+### Example SQL tutorials
+
+https://www.w3schools.com/sql/sql_intro.asp
