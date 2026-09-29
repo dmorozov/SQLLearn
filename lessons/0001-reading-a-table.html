@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>01 · Reading a table — SQLLearn</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/practice.js" defer></script>
+</head>
+<body>
+<main>
+  <div class="topline"><span>SQLLearn / Oracle 19c</span><a href="../reference/0001-reading-a-table.html">Quick reference &amp; glossary ↗</a></div>
+  <header>
+    <div class="eyebrow">Lesson 01 · About 5 minutes</div>
+    <h1>Ask for a few columns.</h1>
+    <p class="lede">Your first step toward joins: read one table and choose what appears in the answer.</p>
+    <p class="meta">One goal today: write a SELECT query with the columns you want.</p>
+  </header>
+  <nav aria-label="Lesson sections"><a href="#idea">The idea</a><a href="#query">The query</a><a href="#practice">Try it</a><a href="#your-turn">Your turn</a></nav>
+
+  <section id="idea">
+    <h2><span class="number">01</span>A table is a grid of records.</h2>
+    <p>A <strong>row</strong> is one record. A <strong>column</strong> is a named piece of information, such as <code>CODE</code>. SQL is the language we use to ask the database for data; that request is a <strong>query</strong>. <a href="#source-tables" aria-label="Source 1: Oracle tables">[1]</a> <a href="#source-queries" aria-label="Source 2: Oracle queries">[2]</a></p>
+    <figure>
+      <div class="table-scroll">
+        <table>
+          <caption>Three rows and three columns from your CODE_ATTRIBUTE table</caption>
+          <thead><tr><th scope="col">ID</th><th scope="col">CODE</th><th scope="col">NAME</th></tr></thead>
+          <tbody>
+            <tr><td>21</td><td>system</td><td>System</td></tr>
+            <tr><td>22</td><td>account_access</td><td>Account Access</td></tr>
+            <tr><td>23</td><td>login_success</td><td>Login Successful</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <figcaption>Actual query result, captured through MCP on 28 September 2026. This is a small view of the table; its other rows and columns still exist.</figcaption>
+    </figure>
+  </section>
+
+  <section id="query">
+    <h2><span class="number">02</span>Choose columns. Name the table.</h2>
+    <div class="split">
+      <pre><code><span class="keyword">SELECT</span> ID, CODE, NAME
+<span class="keyword">FROM</span> CODE_ATTRIBUTE
+<span class="keyword">ORDER BY</span> ID
+<span class="keyword">FETCH FIRST</span> 3 <span class="keyword">ROWS ONLY</span>;</code></pre>
+      <dl class="explanations">
+        <div><dt><code>SELECT ID, CODE, NAME</code></dt><dd>Display these three columns, in this order.</dd></div>
+        <div><dt><code>FROM CODE_ATTRIBUTE</code></dt><dd>Read them from this table.</dd></div>
+        <div><dt><code>ORDER BY ID</code></dt><dd>Sort the answer by ID, smallest first.</dd></div>
+        <div><dt><code>FETCH FIRST 3 ROWS ONLY</code></dt><dd>Return at most three rows.</dd></div>
+      </dl>
+    </div>
+    <p class="small">Commas separate column names. The semicolon ends the statement in your worksheet. Keep the last two lines as given while practicing SELECT and FROM. <a href="#source-queries">[2]</a> <a href="#source-select">[3]</a></p>
+    <p class="note">The answer is called a <strong>result set</strong>. This query reads data; choosing fewer columns does not delete anything from the stored table.</p>
+  </section>
+
+  <section id="practice">
+    <h2><span class="number">03</span>Change the answer’s shape.</h2>
+    <div class="lab" data-column-preview data-table="CODE_ATTRIBUTE">
+      <p>Uncheck <strong>ID</strong>. Watch the query and the result change.</p>
+      <fieldset class="no-print">
+        <legend>Columns to display</legend>
+        <div class="choices">
+          <label><input type="checkbox" value="ID" checked> ID</label>
+          <label><input type="checkbox" value="CODE" checked> CODE</label>
+          <label><input type="checkbox" value="NAME" checked> NAME</label>
+        </div>
+      </fieldset>
+      <pre><code data-query>SELECT ID, CODE, NAME
+FROM CODE_ATTRIBUTE
+ORDER BY ID
+FETCH FIRST 3 ROWS ONLY;</code></pre>
+      <div class="table-scroll">
+        <table>
+          <caption>Preview of the same three saved rows</caption>
+          <thead><tr><th scope="col" data-column="ID">ID</th><th scope="col" data-column="CODE">CODE</th><th scope="col" data-column="NAME">NAME</th></tr></thead>
+          <tbody>
+            <tr><td data-column="ID">21</td><td data-column="CODE">system</td><td data-column="NAME">System</td></tr>
+            <tr><td data-column="ID">22</td><td data-column="CODE">account_access</td><td data-column="NAME">Account Access</td></tr>
+            <tr><td data-column="ID">23</td><td data-column="CODE">login_success</td><td data-column="NAME">Login Successful</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="feedback" data-preview-status aria-live="polite"></p>
+      <p class="small">This preview works offline. Run the query in your Oracle worksheet to read the current database.</p>
+      <noscript>The interactive preview needs JavaScript. Instead, remove ID and its comma from the SELECT line in your worksheet and run it again.</noscript>
+    </div>
+    <form data-quiz data-answer="columns" data-correct="Yes. SELECT chooses the displayed columns here; FROM chooses their source table." data-retry="Look at the query again: the column names follow SELECT. Try once more.">
+      <fieldset>
+        <legend>Without looking above: what does the SELECT list choose?</legend>
+        <div class="choices">
+          <label><input type="radio" name="select-purpose" value="tables"> Source tables</label>
+          <label><input type="radio" name="select-purpose" value="columns"> Result columns</label>
+          <label><input type="radio" name="select-purpose" value="order"> Sorting order</label>
+        </div>
+      </fieldset>
+      <button type="submit">Check my answer</button>
+      <p class="feedback" data-feedback role="status"></p>
+    </form>
+  </section>
+
+  <section id="your-turn" class="exercise">
+    <h2><span class="number">04</span>Write one yourself.</h2>
+    <p>Open <a href="../exercises/0001-reading-a-table.sql">the starter SQL file</a> in VS Code and use your Oracle connection’s worksheet to run its query.</p>
+    <p>Then change it to show <strong>only NAME</strong>, keeping the same ordering and three-row limit. Type the change yourself. Predict the number of result columns before running it.</p>
+    <p>Send your query and prediction to the agent. We’ll check them together before adding anything new. Ask about any word or line that feels unclear.</p>
+    <p class="small">Before the next lesson, recall from memory: which word chooses columns, and which names the table?</p>
+  </section>
+
+  <section class="sources" id="sources">
+    <h2>Read a little further</h2>
+    <p class="small">Primary reading: <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/tdddg/selecting-table-data.html">Oracle’s “About Queries”</a> at the top of this page. Just that short section is enough today; its HR sample tables differ from yours.</p>
+    <ol class="small">
+      <li id="source-tables"><a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/tables-and-table-clusters.html">Oracle 19c: Tables — Columns and Rows</a>.</li>
+      <li id="source-queries"><a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/tdddg/selecting-table-data.html">Oracle 19c: Selecting Table Data</a>.</li>
+      <li id="source-select"><a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html">Oracle 19c: SELECT — ordering and row limits</a>.</li>
+    </ol>
+  </section>
+  <footer class="small"><a href="../reference/0001-reading-a-table.html#glossary">Keep the glossary handy</a> · Next, after practice: choosing which rows to return.</footer>
+</main>
+</body>
+</html>
