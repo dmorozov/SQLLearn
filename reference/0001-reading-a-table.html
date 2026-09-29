@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reading a table · SQL reference</title>
+  <link rel="stylesheet" href="../assets/course.css">
+</head>
+<body>
+<main>
+  <div class="topline"><span>SQLLearn / Quick reference 01</span><a href="../lessons/0001-reading-a-table.html">Back to the lesson ↗</a></div>
+  <header>
+    <div class="eyebrow">Oracle 19c · Keep beside your worksheet</div>
+    <h1>Reading a table.</h1>
+    <p class="lede">Choose columns with SELECT. Name their table with FROM.</p>
+  </header>
+  <section id="pattern">
+    <h2>The pattern</h2>
+    <pre><code>SELECT ID, CODE, NAME
+FROM CODE_ATTRIBUTE
+ORDER BY ID
+FETCH FIRST 3 ROWS ONLY;</code></pre>
+    <table>
+      <caption>What each part does</caption>
+      <thead><tr><th scope="col">Part</th><th scope="col">Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>SELECT</code></td><td>Columns to display, separated by commas.</td></tr>
+        <tr><td><code>FROM</code></td><td>Source table.</td></tr>
+        <tr><td><code>ORDER BY ID</code></td><td>Sort by ID, smallest first.</td></tr>
+        <tr><td><code>FETCH FIRST 3 ROWS ONLY</code></td><td>At most three result rows.</td></tr>
+      </tbody>
+    </table>
+    <p class="small">Without ORDER BY, result order is not guaranteed. For this simple query, ID may remain in ORDER BY even when it is absent from SELECT. <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/tdddg/selecting-table-data.html">Oracle: Selecting Table Data</a>; <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html">SELECT reference</a>.</p>
+  </section>
+  <section id="glossary">
+    <h2>Your first SQL words</h2>
+    <dl class="glossary">
+      <dt>Table</dt><dd>Named collection of data arranged in rows and columns.</dd>
+      <dt>Row / record</dt><dd>One record, read across the grid.</dd>
+      <dt>Column</dt><dd>A named piece of information, read down the grid.</dd>
+      <dt>SQL</dt><dd>Structured Query Language: the language used here to request data.</dd>
+      <dt>Query</dt><dd>A request for data, written here as a SELECT statement.</dd>
+      <dt>Result set</dt><dd>The rows and columns returned by a query.</dd>
+    </dl>
+    <p class="small">Sources: <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/tables-and-table-clusters.html">Oracle: Tables, Columns, and Rows</a>; <a href="https://docs.oracle.com/en/database/oracle/oracle-database/19/tdddg/selecting-table-data.html">About Queries</a>.</p>
+  </section>
+  <section>
+    <p class="note">Changing the displayed columns in this query changes the answer, not the stored table.</p>
+  </section>
+  <footer class="small"><a href="../lessons/0001-reading-a-table.html#your-turn">Practice from memory</a> · Ask the agent whenever a term needs another explanation.</footer>
+</main>
+</body>
+</html>
