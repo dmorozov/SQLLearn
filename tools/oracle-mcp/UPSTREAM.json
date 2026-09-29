@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/oracle/mcp",
+  "commit": "7b9c5d6d046cd0176f1e0728c0f14c8a3287001a",
+  "subdirectory": "src/oracle-db-mcp-java-toolkit",
+  "archive_sha256": "f53e0ec388b48ef9f912caf242a8f1a49225ef3ab89a2b9e4a4947944e8a1b25",
+  "jar_sha256": "55a2cdeb58724cd0893420471c4a7f038f849218e3e7edecf6c5017c6b2b5628"
+}

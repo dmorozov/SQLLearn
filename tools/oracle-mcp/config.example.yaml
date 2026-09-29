@@ -1,0 +1,5 @@
+dataSources:
+  tps-local:
+    url: "jdbc:oracle:thin:@//localhost:1521/orclpdb1?oracle.jdbc.ReadTimeout=10min"
+    user: "tps"
+    password: "REPLACE_WITH_LOCAL_PASSWORD"
